@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.user.work.testing.horoscope.utils.UtilLoadingImage"/>
+        <variable name="click" type="com.user.work.testing.horoscope.ui.HoroscopeClickHandler" />
+        <variable name="horoscope" type="com.user.work.testing.horoscope.data.model.Horoscope" />
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> click.onHoroscopeItemClick(horoscope)}"
+        >
+
+        <com.user.work.testing.horoscope.utils.RoundedImageView
+            android:id="@+id/roundedImageViewBack"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@color/colorPrimary"
+            />
+
+        <com.user.work.testing.horoscope.utils.RoundedImageView
+            android:id="@+id/roundedImageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@{horoscope.imageUrl}"
+            app:error="@{@drawable/ic_launcher_background}"
+            />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text='@{horoscope.zodiac ?? "Unknown"}'
+            app:layout_constraintStart_toEndOf="@+id/roundedImageView"
+            app:layout_constraintTop_toTopOf="@+id/roundedImageView"
+            />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text='@{horoscope.dates ?? "Unknown"}'
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
